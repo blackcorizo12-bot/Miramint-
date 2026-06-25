@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Miramint Customer Dashboard</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+display:flex;
+background:#f5f7fa;
+}
+
+.sidebar{
+width:250px;
+height:100vh;
+background:#0d6efd;
+color:white;
+padding:20px;
+position:fixed;
+}
+
+.sidebar h2{
+margin-bottom:25px;
+}
+
+.sidebar a{
+display:block;
+color:white;
+text-decoration:none;
+padding:12px 0;
+}
+
+.main{
+margin-left:250px;
+padding:30px;
+width:100%;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+margin-top:20px;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 2px 10px rgba(0,0,0,.1);
+}
+
+.section{
+background:white;
+padding:20px;
+margin-top:20px;
+border-radius:10px;
+box-shadow:0 2px 10px rgba(0,0,0,.1);
+}
+
+.search-box{
+width:100%;
+padding:12px;
+border:1px solid #ddd;
+border-radius:6px;
+margin-top:10px;
+}
+
+.business{
+padding:15px;
+border-bottom:1px solid #eee;
+}
+
+button{
+padding:10px 15px;
+background:#0d6efd;
+color:white;
+border:none;
+border-radius:6px;
+cursor:pointer;
+margin-top:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="sidebar">
+<h2>Miramint</h2>
+
+<a href="#">Dashboard</a>
+<a href="#">Discover Businesses</a>
+<a href="#">My Bookings</a>
+<a href="#">Saved Businesses</a>
+<a href="#">Messages</a>
+<a href="#">Profile</a>
+<a href="#">Settings</a>
+<a href="login.html">Logout</a>
+</div>
+
+<div class="main">
+
+<h1>Customer Dashboard</h1>
+
+<div class="cards">
+
+<div class="card">
+<h3>Saved Businesses</h3>
+<h1>0</h1>
+</div>
+
+<div class="card">
+<h3>Bookings</h3>
+<h1>0</h1>
+</div>
+
+<div class="card">
+<h3>Messages</h3>
+<h1>0</h1>
+</div>
+
+<div class="card">
+<h3>Reviews Given</h3>
+<h1>0</h1>
+</div>
+
+</div>
+
+<div class="section">
+<h2>Find Businesses</h2>
+
+<input type="text" class="search-box" placeholder="Search businesses...">
+
+<div id="businessList"></div>
+
+</div>
+
+<div class="section">
+<h2>My Profile</h2>
+<p>Name: Customer Name</p>
+<p>Email: customer@email.com</p>
+<p>Status: Active</p>
+</div>
+
+</div>
+<script>
+const businesses =
+JSON.parse(localStorage.getItem("miramintBusinesses")) || [];
+
+let output = "";
+
+businesses.forEach(business => {
+output += `
+<div class="business">
+<h3>${business.name}</h3>
+<p>${business.category}</p>
+<p>${business.location}</p>
+<button>View Details</button>
+</div>
+`;
+});
+
+document.getElementById("businessList").innerHTML = output;
+</script>
+</body>
+</html>

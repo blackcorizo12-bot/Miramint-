@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Add Business</title>
+
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#f5f7fa;
+padding:20px;
+}
+
+.container{
+max-width:600px;
+margin:auto;
+background:white;
+padding:20px;
+border-radius:10px;
+}
+
+input,select,textarea,button{
+width:100%;
+padding:12px;
+margin:10px 0;
+}
+
+button{
+background:#0d6efd;
+color:white;
+border:none;
+cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Add Business</h2>
+
+<form id="businessForm">
+
+<input type="text" id="businessName" placeholder="Business Name" required>
+
+<input type="text" id="category" placeholder="Category" required>
+
+<input type="text" id="location" placeholder="Location" required>
+
+<input type="tel" id="phone" placeholder="Phone Number" required>
+
+<textarea id="description" placeholder="Business Description"></textarea>
+
+<button type="submit">Save Business</button>
+
+</form>
+
+</div>
+
+<script>
+document.getElementById("businessForm").addEventListener("submit", function(e){
+
+e.preventDefault();
+
+const business = {
+name: document.getElementById("businessName").value,
+category: document.getElementById("category").value,
+location: document.getElementById("location").value,
+phone: document.getElementById("phone").value,
+description: document.getElementById("description").value
+};
+
+let businesses =
+JSON.parse(localStorage.getItem("miramintBusinesses")) || [];
+
+businesses.push(business);
+
+localStorage.setItem(
+"miramintBusinesses",
+JSON.stringify(businesses)
+);
+
+alert("Business saved successfully!");
+
+window.location.href = "owner-dashboard.html";
+
+});
+</script>
+
+</body>
+</html>
